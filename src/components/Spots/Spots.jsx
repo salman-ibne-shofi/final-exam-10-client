@@ -1,4 +1,4 @@
-const AllSpots = () => {
+const Spots = () => {
 	return (
 		<div>
 			<h2>all spots</h2>
@@ -6,4 +6,4 @@ const AllSpots = () => {
 	);
 };
 
-export default AllSpots;
+export default Spots;

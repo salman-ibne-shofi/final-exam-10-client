@@ -4,13 +4,14 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./components/Root/Root.jsx";
 import ErrorPage from "./components/ErrorPage/ErrorPage.jsx";
-import Home from "./components/Home/Home.jsx";
 import Login from "./components/LogIn/Login.jsx";
 import Register from "./components/Register/Register.jsx";
 import Banner from "./components/Banner/Banner.jsx";
-import AllSpots from "./components/AllSpots/AllSpots.jsx";
 import AddSpot from "./components/AddSpot/AddSpot.jsx";
 import MyList from "./components/MyList/MyList.jsx";
+import AuthProvider from "./Providers/AuthProvider.jsx";
+import Spots from "./components/Spots/Spots.jsx";
+import Home from "./components/Home/Home.jsx"
 
 const router = createBrowserRouter([
 	{
@@ -35,8 +36,8 @@ const router = createBrowserRouter([
 				element: <Banner></Banner>,
 			},
 			{
-				path: "/allspots",
-				element: <AllSpots></AllSpots>,
+				path: "/spots",
+				element: <Spots></Spots>,
 			},
 			{
 				path: "/addspot",
@@ -52,6 +53,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
-		<RouterProvider router={router} />
+		<AuthProvider>
+			<RouterProvider router={router} />
+		</AuthProvider>
 	</StrictMode>
 );

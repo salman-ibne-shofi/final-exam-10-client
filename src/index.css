@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.main-slide {
+    @apply w-full min-h-[90vh] bg-no-repeat bg-cover bg-center;
+}

@@ -1,14 +1,56 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
+	const { createUser } = useContext(AuthContext);
+
+	const handleRegister = (e) => {
+		e.preventDefault();
+
+		const name = e.target.name.value;
+		const email = e.target.email.value;
+		const photo = e.target.photo.value;
+		const password = e.target.password.value;
+		console.log(name, email, photo, password);
+
+		// create user
+		createUser(email, password)
+			.then((result) => {
+				const user = result.user;
+
+				// Show success alert
+				Swal.fire({
+					title: "Registration Successful!",
+					text: `Welcome, ${name}!`,
+					icon: "success",
+					confirmButtonText: "Thank You",
+				});
+
+				// Optionally reset the form
+				e.target.reset();
+			})
+			.catch((error) => {
+				console.error(error);
+
+				// sweet alert
+				Swal.fire({
+					title: "Error!",
+					text: "You already registered",
+					icon: "error",
+					confirmButtonText: "Fix It",
+				});
+			});
+	};
 	return (
-		<div className="hero bg-base-200 min-h-screen">
+		<div className="hero min-h-screen">
 			<div className="hero-content flex-col">
 				<div className="text-center lg:text-left">
 					<h1 className="text-5xl font-bold">Register now!</h1>
 				</div>
 				<div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-					<form className="card-body">
+					<form onSubmit={handleRegister} className="card-body">
 						<div className="form-control">
 							<label className="label">
 								<span className="label-text">Name</span>
@@ -39,7 +81,7 @@ const Register = () => {
 							</label>
 							<input
 								type="photo url"
-								name="photo url"
+								name="photo"
 								placeholder="photo url"
 								className="input input-bordered"
 								required
@@ -51,7 +93,7 @@ const Register = () => {
 							</label>
 							<input
 								type="password"
-								name="name"
+								name="password"
 								placeholder="password"
 								className="input input-bordered"
 								required
@@ -67,9 +109,11 @@ const Register = () => {
 							</div>
 						</div>
 						<div className="form-control mt-6">
-							<button className="btn btn-primary">
-								Register
-							</button>
+							<input
+								value="Register"
+								type="submit"
+								className="btn btn-primary"
+							/>
 						</div>
 					</form>
 				</div>
