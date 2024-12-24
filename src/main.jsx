@@ -11,7 +11,8 @@ import AddSpot from "./components/AddSpot/AddSpot.jsx";
 import MyList from "./components/MyList/MyList.jsx";
 import AuthProvider from "./Providers/AuthProvider.jsx";
 import Spots from "./components/Spots/Spots.jsx";
-import Home from "./components/Home/Home.jsx"
+import Home from "./components/Home/Home.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
 			{
 				path: "/mylist",
 				element: <MyList></MyList>,
+			},
+			{
+				path: "/footer",
+				element: <Footer></Footer>,
 			},
 		],
 	},
